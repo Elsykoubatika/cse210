@@ -13,24 +13,47 @@ public class Journal
         Console.WriteLine("Entrée ajoutée avec succès.");
     }
 
-    public void SaveToFile(string file)
+    public void SaveToFile(string fileName)
     {   
-        File.WriteAllText(file, string.Join(",", _entries));
-        Console.WriteLine($"Enter Save to CVS File '{file}'");
+        try
+        {
+            File.WriteAllText(fileName, string.Join(",", _entries));
+            Console.WriteLine($"Enter Save to cvs File '{fileName}'");
+        }
+
+        catch (Exception e)
+        {
+            Console.WriteLine($"Errer save CSV : {e.Message}");
+        }
+
     }
 
-    public void LoadFromFile(String file)
+    public void LoadFromFile(String fileName)
     {
+        if (!File.Exists(fileName))
+        {
+            Console.WriteLine($"File '{fileName}' not found");
+            return;
+        }
 
-        string contenu = File.ReadAllText(file);
-        var entriesText = contenu.Split(',');
+        string[] lines = File.ReadAllLines(fileName);
         _entries = new List<Entry>();
 
-        foreach (var entryText in entriesText)
+        foreach (string line in lines)
         {
-            _entries.Add(Entry.Parse(entryText));
+            try
+            {
+                _entries.Add(Entry.Parse(line));
+            }
+
+            catch (FormatException ex)
+            {
+                Console.WriteLine($"Skipping invalid entry: {line}");
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            
         }
-        Console.WriteLine($"Load From file '{file}'");
+        Console.WriteLine($"Journal loaded From  '{fileName}' With {_entries.Count} entries.");
     }
 
     public void DisplayAll()

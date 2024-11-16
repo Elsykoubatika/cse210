@@ -8,8 +8,6 @@ class Program
 
         string userNumber = Console.ReadLine();
 
-        int choice = int.Parse(userNumber);
-
         string answer = "";
 
         PromptGenerator Promp = new PromptGenerator();
@@ -18,7 +16,7 @@ class Program
         while (true)
         {
             Console.WriteLine("Enter your choice\n1-Add\n2-load\n3-Save\n4-Display\n5-Quit");
-
+            
             if (!int.TryParse(Console.ReadLine(), out int choice) || choice < 1 || choice > 5 )
             {
                 Console.WriteLine("Please enter a number between 1 and 5.");
@@ -40,7 +38,7 @@ class Program
                 Console.WriteLine("Enter added seccessfully");
             }
         
-            else if (choice == 2) // display
+            else if (choice == 4) // display
             {   
                 journal.DisplayAll();
             }
@@ -52,7 +50,7 @@ class Program
                 journal.SaveToFile(fileName);
             }
 
-            else if (choice == 4)// Load the file
+            else if (choice == 2)// Load the file
             {
                 Console.WriteLine("Enter file's name to lad: ");
                 string fileName = Console.ReadLine();
