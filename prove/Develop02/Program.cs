@@ -12,6 +12,7 @@ class Program
 
         PromptGenerator Promp = new PromptGenerator();
         Journal journal = new Journal();
+        Entry Answer = new Entry();
 
         while (true)
         {
@@ -30,7 +31,6 @@ class Program
 
                 answer = Console.ReadLine();
 
-                Entry Answer = new Entry();
                 Answer._date = theCurrentTime.ToShortDateString();
                 Answer._entryText = answer;
                 Answer._promptText = Promp.GetRandomPrompt();
@@ -40,7 +40,7 @@ class Program
         
             else if (choice == 4) // display
             {   
-                journal.DisplayAll();
+                Answer.Displaid();
             }
 
             else if (choice == 3) // Save the file
