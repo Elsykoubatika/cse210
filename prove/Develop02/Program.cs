@@ -4,9 +4,9 @@ class Program
 {
     static void Main(string[] args)
     {  
-        DateTime theCurrentTime = DateTime.Now;
+        Console.WriteLine("Enter your choice\n1-Add\n2-load\n3-Save\n4-Display\n5-Quit");
 
-        string userNumber = Console.ReadLine();
+        DateTime theCurrentTime = DateTime.Now;
 
         string answer = "";
 
@@ -16,8 +16,6 @@ class Program
 
         while (true)
         {
-            Console.WriteLine("Enter your choice\n1-Add\n2-load\n3-Save\n4-Display\n5-Quit");
-            
             if (!int.TryParse(Console.ReadLine(), out int choice) || choice < 1 || choice > 5 )
             {
                 Console.WriteLine("Please enter a number between 1 and 5.");
