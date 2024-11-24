@@ -44,6 +44,7 @@ public class Journal
             try
             {
                 _entries.Add(Entry.Parse(line));
+                Console.WriteLine($"Journal loaded From  '{fileName}' With {_entries.Count} entries.");
             }
 
             catch (FormatException ex)
@@ -53,7 +54,7 @@ public class Journal
             }
             
         }
-        Console.WriteLine($"Journal loaded From  '{fileName}' With {_entries.Count} entries.");
+        
     }
 
     public void DisplayAll()
