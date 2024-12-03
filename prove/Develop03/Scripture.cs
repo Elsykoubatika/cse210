@@ -5,17 +5,10 @@ public class Scripture
     private Reference _reference;
     private List<Word> _words;
     
-    public Scripture(Reference reference, string text)
+    public Scripture(Reference reference)
     {
         _reference = reference;
         _words = new List<Word>();
-
-        //decoupe le texte en mots et crée un objet word pour chaque mot
-        string[] wordsArray = text.Split(' ');
-        foreach (string word in wordsArray)
-        {
-            _words.Add(new Word(word));
-        }
     }
 
     public void HideRandomWords(int numberToHide)
@@ -50,7 +43,7 @@ public class Scripture
     public string GetDisplayText()
     {
         // Crée une chaîne de texte avec les mots affichés ou masqués
-        string result = "";
+        string result = " ";
         foreach (Word word in _words)
         {
             result += word.GetDisplayText() + " ";
@@ -69,5 +62,10 @@ public class Scripture
             }
         }
         return true; // Tous les mots sont masqués
+    }
+
+    public Reference GetReference()
+    {
+        return _reference;
     }
 }

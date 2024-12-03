@@ -31,8 +31,8 @@ public class Reference
     }
 
     public string GetDisplayText()
-    {
-        string reference = $"{_book}{_chapter}:{_verse}-{_endverse}";
+    {   
+        string reference = $"{_book}{_chapter}:{_verse}";
         return reference;
     }
 
