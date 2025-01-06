@@ -14,8 +14,45 @@ public class GoalManager
 
     public void star()
     {
-        Console.WriteLine("1. Create a Goal\n2. List Goals\n3. Record Event\n Display Player Info\n5. Save Goals\n6. Load Goals\n7. Exit\nYour choice: ");
-        string choice = Console.ReadLine();
+        while(true)
+        {
+            Console.WriteLine("1. Create a Goal\n2. List Goals\n3. Record Event\n4. Display Player Info\n5. Save Goals\n6. Load Goals\n7. Exit\nYour choice: ");
+            string choice = Console.ReadLine();
+            if (int.Parse(choice) == 1)
+            {
+                CreateGoal();
+            }
+
+            else if (int.Parse(choice) == 2)
+            {
+                ListeGoalName();
+            }
+
+            else if (int.Parse(choice) == 3)
+            {
+                RecordEvent();
+            }
+
+            else if (int.Parse(choice) == 4)
+            {
+                DisplayPlayerInfo();
+            }
+
+            else if (int.Parse(choice) == 5)
+            {
+                SaveGoal();
+            }
+
+            else if (int.Parse(choice) == 6)
+            {
+                LoadGoal();
+            }
+
+            else
+            {
+                break;
+            }
+        }
     }
 
     public void DisplayPlayerInfo()
@@ -77,7 +114,7 @@ public class GoalManager
     }
     public void RecordEvent()
     {
-        Console.WriteLine("\nSelect a goal to record an event:");
+        Console.WriteLine("Select a goal to record an event:");
         for (int i = 0; i < _goal.Count; i++)
         {
             Console.WriteLine($"{i + 1}. {_goal[i].GetDetailsString()}");
@@ -97,7 +134,18 @@ public class GoalManager
     }
     public void SaveGoal()
     {
-        using (StreamWriter writer = new StreamWriter("goal.txt"))
+        string fileName = "D:/Cproject/cse210/prove/Develop06/goal.txt";
+
+        using (StreamWriter outputFile = new StreamWriter(fileName))
+        {
+            // You can add text to the file with the WriteLine method
+            outputFile.WriteLine("This will be the first line in the file. elsy");
+
+            // You can use the $ and include variables just like with Console.WriteLine
+            string color = "Blue";
+            outputFile.WriteLine($"My favorite color is {color}");
+        }
+        using (StreamWriter writer = new StreamWriter("D:/Cproject/cse210/prove/Develop06/goal.txt"))
         {
             writer.WriteLine($"Player Score: {_score}");
 
@@ -112,12 +160,9 @@ public class GoalManager
     }
     public void LoadGoal()
     {
-        _goal.Clear();
-        using (StreamReader reader = new StreamReader("goals.txt"))
-        {
             // Lire le score total
-            _score = int.Parse(reader.ReadLine());
-            string[] lines = System.IO.File.ReadAllLines("goals.txt");
+            string fileName = "D:/Cproject/cse210/prove/Develop06/goal.txt";
+            string[] lines = System.IO.File.ReadAllLines(fileName);
             foreach (string line in lines)
             {
                 string[] parts = line.Split('|');
@@ -133,11 +178,10 @@ public class GoalManager
                 else if (parts[0] == "ChecklistGoal")
                 {
                     _goal.Add(new ChecklistGoal(parts[1], parts[2], int.Parse(parts[3]),
-                        int.Parse(parts[4]), int.Parse(parts[6])));
+                    int.Parse(parts[4]), int.Parse(parts[6])));
                 }
             }
-            Console.WriteLine("Les objectifs ont été chargés avec succès.");
-        }       
+            Console.WriteLine("Les objectifs ont été chargés avec succès.");     
     }
 }
 

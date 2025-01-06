@@ -52,6 +52,6 @@ public class ChecklistGoal : Goal
 
     public override string GetstringRepresentation()
     {
-        return$"ChecklistGoal|{GetName()}|{GetDiscription()}|{GetPointe()}|{_target}|{_amountCompleted}|{_bonus}";
+        return$"[{(IsComplet() ? "X" : " ")}] {GetName()}|{GetDiscription()}|{GetPointe()}|{_target}/{_amountCompleted}|{_bonus}";
     }
 }

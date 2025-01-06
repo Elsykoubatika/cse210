@@ -59,7 +59,7 @@ public class Goal
     }
     public virtual string GetstringRepresentation()
     {
-        return $"ChecklistGoal|{_Name}|{_description}|{_points}|";
+        return $"{_Name}|{_description}|{_points}|";
     }
 
 }

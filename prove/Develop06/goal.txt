@@ -1,0 +1,3 @@
+Player Score: 0
+SimpleGoal|Simple Goal|allez voire elsy|10|True
+Eternal Goal|livre un verser par jour|22|
